@@ -1,0 +1,176 @@
+{% extends "master" %}
+{% set page = 'home' %}
+
+{% block content %}
+<div class="jumbotron large-jumbo">
+  <div class="container">
+    <div class="text-center">
+      <h1>MCVerify</h1>
+      <p>
+        The simplest all-in-one minecraft verification system for developers
+      </p>
+
+      <a href="/getting-started" class="btn btn-primary btn-lg">Getting Started</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <section class="feature-set">
+    <div class="text-center">
+      <h2 class="feature-set-title">What's cool about us?</h2>
+    </div>
+
+    <div class="row">
+      <div class="col col-lg-4">
+        <div class="text-center">
+          <i class="fa fa-cube fa-8x"></i>
+          <h3>An all-in-one solution</h3>
+          <p>
+            MCVerify isn't decentralized, meaning you don't have to setup your own
+            server or install any plugins. Just generate an API key and you're good
+            to go.
+          </p>
+        </div>
+      </div>
+
+      <div class="col col-lg-4">
+        <div class="text-center">
+          <i class="fa fa-bolt fa-8x"></i>
+          <h3>Powered by fast, modern tech</h3>
+          <p>
+            Our software stack consists of some of the fastest and most modern
+            tools available. We can guarantee that you won't ever find yourself
+            waiting on us.
+          </p>
+        </div>
+      </div>
+
+      <div class="col col-lg-4">
+        <div class="text-center">
+          <i class="fa fa-shield fa-8x"></i>
+          <h3>Designed to be Reliable</h3>
+          <p>
+            We take our users' security seriously. Our internal services run through
+            a private, local, and secure network to ensure that there's no leaky pipes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="feature-set">
+    <div class="text-center feature-set-title">
+      <h2>How does it work?</h2>
+      <h4 class="text-muted">By the way, did we mention it's super simple and easy? It's just 2 steps.</h4>
+    </div>
+
+    <div class="row">
+      <div class="col col-lg-6">
+        <div class="panel panel-default step-panel" data-mh="step">
+          <div class="text-center">
+            <p class="step-number">0</p>
+
+            <p data-mh="step-content">
+              Send a <code>POST</code> request to <code>api.mcverify.com/new</code> containing your API key.
+              We'll respond with a unique token and IP for you to send to the user.
+            </p>
+
+            <strong>Example Response</strong>
+            <pre class="text-left">
+{&#10;  &#34;token&#34;: &#34;c4c4af8e5bef755a&#34;,&#10;  &#34;created&#34;: 1493432786380,&#10;  &#34;verify_server&#34;: &#34;c4c4af8e5bef755a.s.mcverify.org&#34;&#10;}
+            </pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-lg-6">
+        <div class="panel panel-default step-panel" data-mh="step">
+          <div class="text-center">
+            <p class="step-number">1</p>
+
+            <p data-mh="step-content">
+              After the user joins the server using their unique hostname,
+              we'll send a POST request to your preferred URL with a payload
+              containing the user's username, UUID, protocol version, and a custom
+              property for your own purposes
+            </p>
+
+            <strong>Example Response</strong>
+            <pre class="text-left">
+{&#10;  &#34;username&#34;: &#34;killazombiecow&#34;,&#10;  &#34;uuid&#34;: &#34;5df2ec656d0b43028ba0607cde51bc42&#34;,&#10;  &#34;protocolVersion&#34;: 47&#10;}
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="feature-set">
+    <div class="text-center">
+      <h2 class="feature-set-title">How can I contribute?</h2>
+    </div>
+
+    <h3>Donating</h3>
+    <p>
+      Showing your support by donating is by far one of the best ways you can
+      support us. It directly helps us pay for our bills (we actually have those).
+    </p>
+
+    <h3>Development</h3>
+    <p>
+      We're always looking for a helping hand. If you're interested in working
+      with us we're happy to chat! It's recommended that you at least have some
+      experience with these things:
+
+      <ul>
+        <li>Node.JS</li>
+        <li>MongoDB</li>
+        <li>Redis</li>
+        <li>Restify</li>
+        <li>AdonisJS</li>
+        <li>Nunjucks</li>
+      </ul>
+    </p>
+
+    <h3>Advertising</h3>
+    <p>
+      Putting the word out there for us helps us too. It helps us expand our
+      audience and further motivation to work harder! We're happy to serve.
+    </p>
+  </section>
+
+  <hr>
+
+  <section class="feature-set">
+    <div class="text-center">
+      <h2 class="feature-set-title">Questions?</h2>
+    </div>
+
+    <h3>Can't find what you're looking for?</h3>
+    <p>We always have an open line over at our <a href="/contact">contact</a> page.</p>
+
+    <h3>Will MCVerify ever cost money?</h3>
+    <p>
+      We don't know yet. MCVerify was spawned out of impulse, there's no business
+      model or future plans yet. In the case demand outweighs resources we may
+      have to charge, but worry not, we don't plan on charging outrageous prices.
+      Regardless, we don't see ourselves being in that situation for a while.
+    </p>
+
+    {# <h3>How much does MCVerify cost to operate?</h3>
+    <p>
+      Contrary to popular belief, we don't have large bills. From the start we wanted
+      to design an efficient and low resource usage system. That meant we had to
+      look at how others did it previously and see how we could improve. That led
+      us to making our own custom barebones server implementation following the Minecraft
+      protocol along with a distributed backend.
+    </p> #}
+  </section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "../master" %}
+{% set page = 'services' %}
+
+{% block inner_content %}
+  <div class="panel panel-default">
+    <div class="panel-heading">Manage Service {{ service.name }}</div>
+    <div class="panel-body">
+      {% if old('errors') %}
+        <div class="alert alert-danger">
+          {% for error in old('errors') %}
+            <p>
+              {{ error.message | capitalize }}
+            </p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <form action="{{ 'services:manage:update' | route({ id: service._id }) }}" class="form" method="POST">
+        <div class="form-group">
+          <label for="service_name" class="control-label">Name</label>
+          <input type="text" class="form-control" name="service_name" id="service_name" placeholder="My Awesome Service" value="{{ service.name }}">
+        </div>
+
+        <div class="form-group">
+          <label for="service_ivn_url" class="control-label">Instant Verification Notification URL</label>
+          <small class="help-block">This should be where you would prefer to have POST requests sent.</small>
+          <input type="text" class="form-control" name="service_ivn_url" id="service_ivn_url" placeholder="https://my.awesome.service/ivn" value="{{ service.ivn_url }}">
+        </div>
+
+        <div class="form-group">
+          <label for="service_api_key" class="control-label">API Key</label>
+          <input type="text" class="form-control" name="service_api_key" id="service_api_key" value="{{ service.api_key }}" disabled>
+        </div>
+
+        <div class="clearfix">
+          <div class="pull-right">
+            <div class="form-group">
+              <a href="../" class="btn btn-danger">Cancel</a>
+              <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+          </div>
+        </div>
+
+        {{ csrfField }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

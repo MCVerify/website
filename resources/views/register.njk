@@ -1,0 +1,57 @@
+{% extends "master" %}
+
+{% block content %}
+  <div class="container">
+    <div class="large-ruler"></div>
+    <div class="row">
+      <div class="col col-lg-4 col-lg-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">Register</div>
+          <div class="panel-body">
+            {% if old('errors') %}
+              <div class="alert alert-danger">
+                {% for error in old('errors') %}
+                  <p>
+                    {{ error.message | capitalize }}
+                  </p>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <form action="/register" method="POST" class="form">
+              <div class="form-group">
+                <label for="email" class="control-label">Email</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+              </div>
+
+              <div class="form-group">
+                <label for="username" class="control-label">Username</label>
+                <input type="text" id="username" class="form-control" name="username" placeholder="Username">
+              </div>
+
+              <div class="form-group">
+                <label for="password" class="control-label">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+              </div>
+
+              <div class="form-group">
+                <label for="confirm_password" class="control-label">Confirm Password</label>
+                <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+              </div>
+
+              <div class="clearfix">
+                <div class="pull-right">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                  </div>
+                </div>
+              </div>
+
+              {{ csrfField }}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+.large-jumbo {
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.feature-set {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.feature-set-title {
+  margin-bottom: 50px;
+}
+
+.step-panel {
+  padding: 15px;
+}
+
+.step-number {
+  background-color: #666;
+  font-size: 4em;
+  border-radius: 100%;
+  color: #fff;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.large-ruler {
+  height: 150px;
+}
+
+.footer-image {
+  width: 10%;
+  vertical-align: top;
+}

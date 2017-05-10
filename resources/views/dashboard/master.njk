@@ -1,0 +1,27 @@
+{% extends "master" %}
+{% set dashboardPage = true %}
+
+{% block content %}
+<div class="large-ruler"></div>
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Dashboard Navigation</div>
+        <div class="panel-body">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="{{ 'active' if page == 'dashboard' or not page }}"><a href="/dashboard">Dashboard</a></li>
+            <li class="{{ 'active' if page == 'services' }}"><a href="/dashboard/services">Services</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-lg-8">
+      {% block inner_content %}
+
+      {% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

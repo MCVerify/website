@@ -1,0 +1,87 @@
+{% extends "master" %}
+
+{% block content %}
+<div class="container">
+  <div class="large-ruler"></div>
+
+  {% if old('success') %}
+    <div class="alert alert-success">
+      <p>{{ old('success') }}</p>
+    </div>
+  {% endif %}
+
+  {% if old('errors') %}
+    <div class="alert alert-danger">
+      {% for error in old('errors') %}
+        <p>
+          {{ error.message | capitalize }}
+        </p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="col col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">User Information</div>
+        <div class="panel-body">
+          <form class="form">
+            <div class="form-group">
+              <label for="email" class="control-label">Current Email</label>
+              <input type="text" class="form-control" id="email" name="email" value="{{ currentUser.email }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="username" class="control-label">Username</label>
+              <input type="text" class="form-control" id="username" name="username" value="{{ currentUser.username }}" disabled>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Change Email</div>
+        <div class="panel-body">
+          <form action="/settings/update/email" method="POST" class="form">
+            <div class="form-group">
+              <label for="email" class="control-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Change Email</button>
+            </div>
+
+            {{ csrfField }}
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Change Password</div>
+        <div class="panel-body">
+          <form action="/settings/update/password" method="POST" class="form">
+            <div class="form-group">
+              <label for="password" class="control-label">Password</label>
+              <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current Password">
+            </div>
+            <div class="form-group">
+              <label for="new_password" class="control-label">New Password</label>
+              <input type="password" class="form-control" id="new_password" name="new_password" placeholder="New Password">
+            </div>
+            <div class="form-group">
+              <label for="new_password_confirm" class="control-label">Confirm New Password</label>
+              <input type="password" class="form-control" id="new_password_confirm" name="new_password_confirm" placeholder="Confirm New Password">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Change Password</button>
+            </div>
+
+            {{ csrfField }}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

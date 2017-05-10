@@ -1,0 +1,131 @@
+{% extends "master" %}
+{% set page = 'getting-started' %}
+
+{% block content %}
+<div class="container">
+  <div class="large-ruler"></div>
+
+  <div class="row">
+    <div class="col col-lg-8">
+      <div class="page-header">
+        <h1>Getting Started</h1>
+      </div>
+
+      <div id="prereqs">
+        <h3>Prerequisites</h3>
+        <p>
+          There are a few requirements your application must meet to
+          communicate with the API correctly. Your application must:
+        </p>
+
+        <ul>
+          <li>Be able to accept <code>application/json</code> content type</li>
+          <li>Be able to send requests over HTTPS</li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <div id="authentication">
+        <h3>Authentication</h3>
+        <p>
+          All requests made through our API must have an API key included.
+          This API key can be obtained by creating a service through the
+          <a href="/dashboard">Dashboard</a>.
+        </p>
+      </div>
+
+      <hr>
+
+      <div id="verification-request">
+        <h3>Starting a verification request</h3>
+        <p>
+          <strong>Example HTTP Request</strong>
+          <code>GET https://api.mcverify.com/new</code>
+        </p>
+
+        <p>
+          <strong>Query Paramters</strong>
+        </p>
+        <table class="table table-striped table-bordered">
+          <thead>
+            <th>Parameter</th>
+            <th>Description</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>key</td>
+              <td>API Key</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          <strong>Example HTTP Response</strong>
+          <pre class="text-left">
+{
+  "verify_token": "c4c4af8e5bef755a",
+  "verify_server": "c4c4af8e5bef755a.s.mcverify.org",
+}
+          </pre>
+        </p>
+      </div>
+
+      <div id="handling-ivn">
+        <h3>Handling Instant Verification Notifications (IVN)</h3>
+        <p>
+          Once the user has joined your server, a POST request is sent the address
+          defined in your service.
+        </p>
+
+        <p>An IVN can be either 1 of 3 states:</p>
+        <ul>
+          <li>
+            VERIFIED
+            <ul>
+              <li>This state means the user has been verified.</li>
+            </ul>
+          </li>
+
+          <li>
+            PENDING
+            <ul>
+              <li>This state means the verification request is pending and a timeout of 5 minutes</li>
+            </ul>
+          </li>
+
+          <li>
+            TIMEDOUT
+            <ul>
+              <li>This means the verification request has reached its 5 minute TTL and is no longer valid</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>
+          <strong>Example IVN</strong>
+          <pre class="text-left">
+{
+  "username": "kilazombiecow",
+  "uuid": "5df2ec656d0b43028ba0607cde51bc42",
+  "protocolVersion": 47,
+  "verify_token": "c4c4af8e5bef755a"
+}
+          </pre>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="col col-lg-4">
+      <div class="page-header">
+        <h1>Navigation</h1>
+      </div>
+      <div class="list-group">
+        <a href="#" class="list-group-item">Prerequisites</a>
+        <a href="#" class="list-group-item">Authentication</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

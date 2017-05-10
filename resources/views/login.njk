@@ -1,0 +1,48 @@
+{% extends "master" %}
+
+{% block content %}
+<div class="container">
+  <div class="large-ruler"></div>
+  <div class="row">
+    <div class="col col-lg-4 col-lg-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Login</div>
+        <div class="panel-body">
+          {% if old('errors') %}
+            <div class="alert alert-danger">
+              {% for error in old('errors') %}
+                <p>
+                  {{ error.message | capitalize }}
+                </p>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+
+          <form action="/login" class="form" method="POST">
+            <div class="form-group">
+              <label for="email" class="control-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="control-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+
+            <div class="clearfix">
+              <div class="pull-right">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+              </div>
+            </div>
+
+            {{ csrfField }}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

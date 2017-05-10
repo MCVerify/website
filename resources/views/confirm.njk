@@ -1,0 +1,50 @@
+{% extends "master" %}
+
+{% block content %}
+  <div class="container">
+    <div class="large-ruler"></div>
+    <div class="row">
+      <div class="col col-lg-4 col-lg-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">Email Confirmation</div>
+          <div class="panel-body">
+            {% if old('errors') %}
+              <div class="alert alert-danger">
+                {% for error in old('errors') %}
+                  <p>
+                    {{ error.message | capitalize }}
+                  </p>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if old('success') %}
+              <div class="alert alert-success">
+                <p>{{ old('success') }}</p>
+              </div>
+            {% endif %}
+
+            <form action="/confirm" class="form" method="POST">
+              <div class="form-group">
+                <label for="confirm_hash" class="control-label">Confirmation Token</label>
+                <input type="text" class="form-control" id="confirm_hash" name="confirm_hash">
+
+                <p class="help-block">Didn't receive an email? <a href="/confirm/resend">Resend</a></p>
+              </div>
+
+              <div class="clearfix">
+                <div class="pull-right">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                  </div>
+                </div>
+              </div>
+
+              {{ csrfField }}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

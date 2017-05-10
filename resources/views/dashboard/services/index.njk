@@ -1,0 +1,35 @@
+{% extends "../master" %}
+{% set page = 'services' %}
+
+{% block inner_content %}
+<div class="panel panel-default">
+  <div class="panel-heading">Services</div>
+  <div class="panel-body">
+    {% if old('success') %}
+      <div class="alert alert-success">
+        <p>{{ old('success') }}</p>
+      </div>
+    {% endif %}
+
+    <div class="row">
+      {% for service in services %}
+        <div class="col col-lg-3">
+          <div class="well text-center">
+            <h4>{{ service.name }}</h4>
+            <button data-clipboard-text="{{ service.api_key }}" class="btn btn-info btn-xs btn-block">Copy API Key</button>
+            <a href="{{ 'services:manage' | route({ id: service._id }) }}" class="btn btn-primary btn-xs btn-block">Manage</a>
+            <a href="{{ 'services:delete' | route({ id: service._id }) }}" class="btn btn-danger btn-xs btn-block service-delete-button">Delete</a>
+          </div>
+        </div>
+      {% endfor %}
+
+      <div class="col col-lg-3">
+        <div class="well text-center">
+          <i class="fa fa-plus fa-5x"></i>
+          <a href="/dashboard/services/create" class="btn btn-primary btn-block">Create New</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
